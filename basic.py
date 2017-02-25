@@ -6,6 +6,10 @@ import urllib2
 import time
 import json
 
+import sys
+reload(sys)
+sys.setdefaultencoding("utf-8")
+
 class Basic:
     def __init__(self):
         print("this is basic")

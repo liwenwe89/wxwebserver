@@ -4,6 +4,10 @@
 import web
 from handle import Handle
 from basic import Basic
+import sys
+reload(sys)
+sys.setdefaultencoding("utf-8")
+
 urls = (
     '/wx', 'Handle',
 )

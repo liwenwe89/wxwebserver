@@ -1,11 +1,16 @@
 # -*- coding: utf-8 -*-
 # filename: receive.py
 import xml.etree.ElementTree as ET
-import textContent
+import sys
+reload(sys)
+sys.setdefaultencoding("utf-8")
 def parse_xml(web_data):
 
     if len(web_data) == 0:
         return None
+    #这里对使用ET对xml进行了解析
+    #xmlData 就是一个ET解析出来的类了
+    print "\nweb_data "+  web_data
     xmlData = ET.fromstring(web_data)
     msg_type = xmlData.find('MsgType').text
     if msg_type == 'event':
@@ -33,29 +38,28 @@ def parse_xml(web_data):
 class Msg(object):
   
     def __init__(self, xmlData):
-        print("\ninit  Msg \n ")
         self.ToUserName = xmlData.find('ToUserName').text
-        print("\n self.ToUserName ",self.ToUserName)
         self.FromUserName = xmlData.find('FromUserName').text
-        print("\n self.FromUserName  ",self.FromUserName )
+        print"\n self.FromUserName  "+self.FromUserName+"\n"
         self.CreateTime = xmlData.find('CreateTime').text
-        print("\n self.CreateTime ",self.CreateTime)
         self.MsgType = xmlData.find('MsgType').text
-        print("\n self.MsgType ",self.MsgType)
         self.MsgId = xmlData.find('MsgId').text
-        print("\n self.MsgId ",self.MsgId)
+        self.content = xmlData.find('Content').text.encode("utf-8")
+        print "self.content "+self.content+"\n"
 
 class TextMsg(Msg):
     def __init__(self, xmlData):
+        print("@@@@@@@@1 ")
         Msg.__init__(self, xmlData)
-        self.Content = xmlData.find('Content').text.encode("utf-8")
-
+        self.Content = xmlData.find('Content').text.encode('utf-8')
+        print "@@@@@@@@@@@2 "+str(self.Content)
 class ImageMsg(Msg):
     def __init__(self, xmlData):
         Msg.__init__(self, xmlData)
         self.PicUrl = xmlData.find('PicUrl').text
         self.MediaId = xmlData.find('MediaId').text
 
+#集成 object
 class EventMsg(object):
     def __init__(self, xmlData):
         self.ToUserName = xmlData.find('ToUserName').text

@@ -1,9 +1,7 @@
-__author__ = 'cherish'
+
 # -*- coding: utf-8 -*-
 # filename: menu.py
-import urllib
-from basic import Basic
-
+__author__ = 'cherish'
 class Menu(object):
     def __init__(self):
         pass

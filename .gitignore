@@ -47,3 +47,5 @@ Temporary Items
 .apdisk
 receive.pyc
 *.pyc
+test.db
+*.db
