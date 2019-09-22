@@ -21,7 +21,7 @@ class Basic:
 
         postUrl = ("https://api.weixin.qq.com/cgi-bin/token?grant_type="
                "client_credential&appid=%s&secret=%s" % (appId, appSecret))
-        print "postUrl ",postUrl, "\n"
+        print(postUrl, ",postUrl, \n")
         urlResp = urllib2.urlopen(postUrl)
         print("urlResp","\n")
         urlResp = json.loads(urlResp.read().decode('utf-8'))
